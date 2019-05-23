@@ -13,7 +13,7 @@ function shuffleArray(array) { //Durstenfeld shuffle algorithm
 class App extends React.Component {
   constructor() {
     super()
-    this.state = {  //seperate later user choice from  current question
+    this.state = {  //Move later user Choices to a seperate nested object
       currentQuestNum: 0,
       quizActive: true
     }
@@ -26,7 +26,7 @@ class App extends React.Component {
   shuffleQuestionsAndAnswers(){
     let questDataForShuffle = questionsData.map(a => Object.assign({}, a)); //deep copy of the data for modifications
     shuffleArray(questDataForShuffle) //shuffling the questions
-    questDataForShuffle = questDataForShuffle.slice(0,9) //getting the first 10 random questions
+    questDataForShuffle = questDataForShuffle.slice(0,9) //getting the first 9 random questions
     this.newQuesData = questDataForShuffle.map((question) => {
       let optionalAnswers = question.wrongAnss.concat(question.correctAns)
       shuffleArray(optionalAnswers) //shuffling the order of the answers
@@ -50,10 +50,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.questionsNumber = Object.keys(this.newQuesData).length-1 // make sure this.var is the right way
-
-    //soon i want to pull some random questions here
-    //maybe initialize here (or maybe in state) the parameter for menu with no grades
+    this.questionsNumber = Object.keys(this.newQuesData).length-1 
   }
   
   render() {

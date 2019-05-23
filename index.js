@@ -30,7 +30,7 @@ var App = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-    _this.state = { //seperate later user choice from  current question
+    _this.state = { //Move later user Choices to a seperate nested object
       currentQuestNum: 0,
       quizActive: true
     };
@@ -48,7 +48,7 @@ var App = function (_React$Component) {
         return Object.assign({}, a);
       }); //deep copy of the data for modifications
       shuffleArray(questDataForShuffle); //shuffling the questions
-      questDataForShuffle = questDataForShuffle.slice(0, 9); //getting the first 10 random questions
+      questDataForShuffle = questDataForShuffle.slice(0, 9); //getting the first 9 random questions
       this.newQuesData = questDataForShuffle.map(function (question) {
         var optionalAnswers = question.wrongAnss.concat(question.correctAns);
         shuffleArray(optionalAnswers); //shuffling the order of the answers
@@ -75,10 +75,7 @@ var App = function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.questionsNumber = Object.keys(this.newQuesData).length - 1; // make sure this.var is the right way
-
-      //soon i want to pull some random questions here
-      //maybe initialize here (or maybe in state) the parameter for menu with no grades
+      this.questionsNumber = Object.keys(this.newQuesData).length - 1;
     }
   }, {
     key: "render",

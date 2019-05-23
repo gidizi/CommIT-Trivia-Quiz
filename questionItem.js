@@ -1,5 +1,7 @@
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
+import OptAnswer from "./OptAnswer.js";
+
 function QuestionItem(props) {
 	var questId = props.item.id;
 
@@ -18,70 +20,14 @@ function QuestionItem(props) {
 			props.item.questionText,
 			"?"
 		),
-		React.createElement(
-			"label",
-			null,
-			React.createElement("input", {
-				type: "radio",
-				name: props.item.id,
-				value: ans0,
-				checked: props.state[questId] === ans0,
-				onChange: function onChange() {
-					return props.handleChange(props.item.id, ans0);
-				}
-			}),
-			" ",
-			ans0
-		),
-		React.createElement("br", null),
-		React.createElement(
-			"label",
-			null,
-			React.createElement("input", {
-				type: "radio",
-				name: props.item.id,
-				value: ans1,
-				checked: props.state[questId] === ans1,
-				onChange: function onChange() {
-					return props.handleChange(props.item.id, ans1);
-				}
-			}),
-			" ",
-			ans1
-		),
-		React.createElement("br", null),
-		React.createElement(
-			"label",
-			null,
-			React.createElement("input", {
-				type: "radio",
-				name: props.item.id,
-				value: ans2,
-				checked: props.state[questId] === ans2,
-				onChange: function onChange() {
-					return props.handleChange(props.item.id, ans2);
-				}
-			}),
-			" ",
-			ans2
-		),
-		React.createElement("br", null),
-		React.createElement(
-			"label",
-			null,
-			React.createElement("input", {
-				type: "radio",
-				name: props.item.id,
-				value: ans3,
-				checked: props.state[questId] === ans3,
-				onChange: function onChange() {
-					return props.handleChange(props.item.id, ans3);
-				}
-			}),
-			" ",
-			ans3
-		),
-		React.createElement("br", null),
+		React.createElement(OptAnswer, { itemId: questId, ansTxt: ans0, isChecked: props.state[questId] === ans0,
+			handleChange: props.handleChange }),
+		React.createElement(OptAnswer, { itemId: questId, ansTxt: ans1, isChecked: props.state[questId] === ans1,
+			handleChange: props.handleChange }),
+		React.createElement(OptAnswer, { itemId: questId, ansTxt: ans2, isChecked: props.state[questId] === ans2,
+			handleChange: props.handleChange }),
+		React.createElement(OptAnswer, { itemId: questId, ansTxt: ans3, isChecked: props.state[questId] === ans3,
+			handleChange: props.handleChange }),
 		React.createElement(
 			"div",
 			{ className: "btnDiv" },
